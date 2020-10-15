@@ -28,7 +28,7 @@ $w = [Environment]::GetFolderPath('ApplicationData')
 		New-Item -Path "$w\BNSTHingy" -Name "profiles" -ItemType "directory"
 	}
 	if (!(test-path "$w\BNSThingy\BG.jpg")) {
-		Invoke-WebRequest -Uri $url -OutFile $output "$w\BNSThingy\BG.jpg"
+		Invoke-WebRequest -Uri https://raw.githubusercontent.com/LeeNyerk/BNSThingy/main/BG.jpg -OutFile "$w\BNSThingy\BG.jpg"
 	}
 
 $ProgramName = "*Blade & Soul*"
@@ -612,7 +612,7 @@ $Xaml = @"
     <Grid Name="form">
         <Border CornerRadius="1">
             <Border.Background>
-                <ImageBrush ImageSource="$RunDir\resources\BG.jpg"/>
+                <ImageBrush ImageSource="$RunDir\BG.jpg"/>
             </Border.Background>
         </Border>
         <Grid Name="TopBar" Margin="0,0,0,517" Height="68">
