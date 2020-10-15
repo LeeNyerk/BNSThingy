@@ -947,7 +947,7 @@ function OpenBNSf {
 
 #--- Open Profiles folder ---#
 function OpenProfiles {
-	Invoke-Item $profilesfolder
+	Invoke-Item "$RunDir\profiles\"
 }
 
 #-------------------------------------------------------------#
