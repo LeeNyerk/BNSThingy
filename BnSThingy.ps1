@@ -660,7 +660,7 @@ $Xaml = @"
             </Button>
             <Button Name="ProfileFButton" HorizontalAlignment="Center" Content="Addons" VerticalAlignment="Top" Margin="948,19.999,72,0" Width="20" Style="{StaticResource ProfileButton}">
                 <ToolTipService.ToolTip >
-                    <ToolTip Style="{StaticResource CustomTooltip}" Content="Addons Folder"/>
+                    <ToolTip Style="{StaticResource CustomTooltip}" Content="Profiles Folder"/>
                 </ToolTipService.ToolTip>
             </Button>
         </Grid>
@@ -714,7 +714,7 @@ $Xaml = @"
             <RadioButton Name="RegionSelection0" GroupName="Regions" Style="{StaticResource SquareRadioButton}" Content="NA" Margin="755,18.685,253,70.315" Width="32" Height="16"/>
             <RadioButton Name="BitnessSelection32" GroupName="Bitness" Style="{StaticResource SquareRadioButton}" Content="32b" Margin="718,44.37,290,44.63" Height="16" Width="32"/>
             <RadioButton Name="BitnessSelection64" GroupName="Bitness" Style="{StaticResource SquareRadioButton}" Content="64b" Margin="755,44.685,253,44.315" Width="32" Height="16"/>
-			<CheckBox Name="PingLabel" Margin="718,71,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="147" Height="16"/>
+	    <CheckBox Name="PingLabel" Margin="718,71,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="147" Height="16"/>
         </Grid>
         <Grid Name="GroupBox1" Margin="20,158.5,0,236.5" Width="320" Height="190" HorizontalAlignment="Left" VerticalAlignment="Center">
             <Border CornerRadius="2" Background="#FF141E29" BorderThickness="1" BorderBrush="#FF363A3B" Opacity="0.8" Margin="0,0,0,0"/>
