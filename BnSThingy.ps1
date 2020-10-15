@@ -714,7 +714,7 @@ $Xaml = @"
             <RadioButton Name="RegionSelection0" GroupName="Regions" Style="{StaticResource SquareRadioButton}" Content="NA" Margin="755,18.685,253,70.315" Width="32" Height="16"/>
             <RadioButton Name="BitnessSelection32" GroupName="Bitness" Style="{StaticResource SquareRadioButton}" Content="32b" Margin="718,44.37,290,44.63" Height="16" Width="32"/>
             <RadioButton Name="BitnessSelection64" GroupName="Bitness" Style="{StaticResource SquareRadioButton}" Content="64b" Margin="755,44.685,253,44.315" Width="32" Height="16"/>
-	    <Label Name="PingLabel" Margin="717,71.185,0,0" Padding="0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="147" Foreground="White" FontSize="11" Opacity="0.8"/>
+	    <Label Name="PingLabel" Margin="717,71.185,0,0" Padding="0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="147" Foreground="White" FontSize="11" Opacity="0.8" FontFamily="Segoe UI Semibold"/>
         </Grid>
         <Grid Name="GroupBox1" Margin="20,158.5,0,236.5" Width="320" Height="190" HorizontalAlignment="Left" VerticalAlignment="Center">
             <Border CornerRadius="2" Background="#FF141E29" BorderThickness="1" BorderBrush="#FF363A3B" Opacity="0.8" Margin="0,0,0,0"/>
