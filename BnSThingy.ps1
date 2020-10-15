@@ -718,7 +718,7 @@ $Xaml = @"
         </Grid>
         <Grid Name="GroupBox1" Margin="20,158.5,0,236.5" Width="320" Height="190" HorizontalAlignment="Left" VerticalAlignment="Center">
             <Border CornerRadius="2" Background="#FF141E29" BorderThickness="1" BorderBrush="#FF363A3B" Opacity="0.8" Margin="0,0,0,0"/>
-            <Label Name="SkillFXLabel" Content="Skill Effects" HorizontalAlignment="Left" Margin="10,7,0,0" VerticalAlignment="Top" FontSize="14" Padding="0" FontWeight="SemiBold" Foreground="White"/>
+            <Label Name="SkillFXLabel" Content="Skill Effects" HorizontalAlignment="Left" Margin="10,7,0,0" VerticalAlignment="Top" FontSize="14" Padding="0" FontWeight="SemiBold" Foreground="White" FontFamily="Segoe UI Semibold"/>
             <CheckBox Name="CheckFXA" Content="Select All" Margin="235,9,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="75" Height="16"/>
             <CheckBox Name="CheckFXM" Content="Mixed" Margin="160,9,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="75" Height="16"/>
             <CheckBox Name="CheckFX1" Content="BM" Margin="10,31,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="69" Height="16"/>
