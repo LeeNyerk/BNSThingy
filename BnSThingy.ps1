@@ -1106,27 +1106,26 @@ function StartProcess {
 		Invoke-Expression $($kiwiInstallerGitHub.Content)
 	}
 	# Check for 64 BNS Patch
-	elseif (!(test-path "$plugins64folder\bnspatch.dll" -PathType Leaf)) {
+	if (!(test-path "$plugins64folder\bnspatch.dll" -PathType Leaf)) {
 		Invoke-Expression $($kiwiInstallerGitHub.Content)
 	}
 	# Check for Loginhelper
-	elseif (!(test-path "$plugins32folder\loginhelper.dll" -PathType Leaf)) {
+	if (!(test-path "$plugins32folder\loginhelper.dll" -PathType Leaf)) {
 		Invoke-Expression $($kiwiInstallerGitHub.Content)
 	}
 	# Check for 64 Loginhelper
-	elseif (!(test-path "$plugins64folder\loginhelper.dll" -PathType Leaf)) {
+	if (!(test-path "$plugins64folder\loginhelper.dll" -PathType Leaf)) {
 		Invoke-Expression $($kiwiInstallerGitHub.Content)
 	}
 	# Check for In-game Login XML
-	elseif (!(test-path "$xmlpatchfolder\use-ingame-login.xml" -PathType Leaf)) {
+	if (!(test-path "$xmlpatchfolder\use-ingame-login.xml" -PathType Leaf)) {
 		Invoke-Expression $($kiwiInstallerGitHub.Content)
 	}
-	else {
+	
 	# Start Client
 	#$OutputBox.AppendText("Starting Client...`r`n")
 	& "$Client" $Params
 	$Window.WindowState = 'Minimized'
-	}
 }
 
 #--- Kill the BnS Client process ---#
