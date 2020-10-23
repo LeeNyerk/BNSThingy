@@ -974,6 +974,12 @@ If (test-path $ProfilePath) {
 			$endindex = $readeachline.Length - $startindex
 			$script:userpass = $readeachline.Substring($startindex, $endindex);
 		}
+		# Load saved Pin
+		elseif ($readeachline -match "pin") {
+			$startindex = 4
+			$endindex = $readeachline.Length - $startindex
+			$script:userpin = $readeachline.Substring($startindex, $endindex);
+		}
 		$ProfileLine++
 	}
 	$ProfileReader.Dispose()
@@ -982,6 +988,7 @@ If (test-path $ProfilePath) {
 #--- Set loaded profile details in Form elements ---#
 $UsernameInput.Text = "$username"
 $PasswordInput.Password = "$userpass"
+$PinInput = "$userpin"
 
 #--- Changing Login Profile --- #
 function ChangedProfile {
@@ -1002,10 +1009,17 @@ function ChangedProfile {
 			$endindex = $readeachline.Length - $startindex
 			$script:userpass = $readeachline.Substring($startindex, $endindex);
 		}
+		# Load saved Pin
+		elseif ($readeachline -match "pin") {
+			$startindex = 4
+			$endindex = $readeachline.Length - $startindex
+			$script:userpin = $readeachline.Substring($startindex, $endindex);
+		}
 		$ProfileLine++
 	}
 	$UsernameInput.Text = "$username"
 	$PasswordInput.Password = "$userpass"
+	$PinInput = "$userpin"
 	
 	$ProfileReader.Dispose()
 }
@@ -1097,7 +1111,15 @@ function StartProcess {
 	$loginlang = "-lang:" + $LanguageSelection.Text
 	$loginuser = "-USERNAME:" + $UsernameInput.Text
 	$loginpass = "-PASSWORD:" + $PasswordInput.Password
-	$Params = @('/sesskey','/launchbylauncher', $loginlang, $loginregion, $Lopt1, $Lopt2, $Lopt3, $loginuser, $loginpass)
+	$loginpin = "-PIN:" + $PinInput
+	
+	# Set launch parameters based on if a pin is set or not
+	if ($userpin -eq "") {
+		$Params = @('/sesskey','/launchbylauncher', $loginlang, $loginregion, $Lopt1, $Lopt2, $Lopt3, $loginuser, $loginpass)
+	}
+	else {
+		$Params = @('/sesskey','/launchbylauncher', $loginlang, $loginregion, $Lopt1, $Lopt2, $Lopt3, $loginuser, $loginpass, $loginpin)
+	}
 	
 	$kiwiInstallerGitHub = Invoke-WebRequest "https://raw.githubusercontent.com/kvy1/kiwi_installer/main/installer.ps1" -UseBasicParsing
 
