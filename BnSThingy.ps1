@@ -1103,23 +1103,66 @@ function StartProcess {
 
 	# Check for BNS Patch
 	if (!(test-path "$plugins32folder\bnspatch.dll" -PathType Leaf)) {
-		Invoke-Expression $($kiwiInstallerGitHub.Content)
+		$msgBox1 = [System.Windows.Forms.MessageBox]::Show("BNSPatch is Required to enable`rin-game login and launching the game.`r`n`r`nWould you like to run Kiwi Installer to install missing files?","32 bit 'bnspatch.dll' is missing","YesNo","Error")
+		switch  ($msgBox1) {
+			'Yes' {
+				Invoke-Expression $($kiwiInstallerGitHub.Content)
+			}
+			'No' {
+				[System.Windows.Forms.MessageBox]::Show("The launch was canceled")
+				return
+			}
+		}
 	}
 	# Check for 64 BNS Patch
 	if (!(test-path "$plugins64folder\bnspatch.dll" -PathType Leaf)) {
-		Invoke-Expression $($kiwiInstallerGitHub.Content)
+		$msgBox2 = [System.Windows.Forms.MessageBox]::Show("BNSPatch is Required to enable`rin-game login and launching the game.`r`n`r`nWould you like to run Kiwi Installer to install missing files?","64 bit 'bnspatch.dll' is missing","YesNo","Error")
+		switch  ($msgBox2) {
+			'Yes' {
+				Invoke-Expression $($kiwiInstallerGitHub.Content)
+			}
+			'No' {
+				[System.Windows.Forms.MessageBox]::Show("The launch was canceled")
+				return
+			}
+		}
 	}
 	# Check for Loginhelper
 	if (!(test-path "$plugins32folder\loginhelper.dll" -PathType Leaf)) {
-		Invoke-Expression $($kiwiInstallerGitHub.Content)
+		$msgBox3 = [System.Windows.Forms.MessageBox]::Show("Login helper is needed for auto-login using profiles,`rbut not required to launch the game.`r`n`r`nWould you like to run Kiwi Installer to install missing files?","32 bit 'loginhelper.dll' is missing","YesNo")
+		switch  ($msgBox3) {
+			'Yes' {
+				Invoke-Expression $($kiwiInstallerGitHub.Content)
+			}
+			'No' {
+				continue
+			}
+		}
 	}
 	# Check for 64 Loginhelper
 	if (!(test-path "$plugins64folder\loginhelper.dll" -PathType Leaf)) {
-		Invoke-Expression $($kiwiInstallerGitHub.Content)
+		$msgBox4 = [System.Windows.Forms.MessageBox]::Show("Login helper is needed for auto-login using profiles,`rbut not required to launch the game.`r`n`r`nWould you like to run Kiwi Installer to install missing files?","64 bit 'loginhelper.dll' is missing","YesNo")
+		switch  ($msgBox4) {
+			'Yes' {
+				Invoke-Expression $($kiwiInstallerGitHub.Content)
+			}
+			'No' {
+				continue
+			}
+		}
 	}
 	# Check for In-game Login XML
 	if (!(test-path "$xmlpatchfolder\use-ingame-login.xml" -PathType Leaf)) {
-		Invoke-Expression $($kiwiInstallerGitHub.Content)
+		$msgBox5 = [System.Windows.Forms.MessageBox]::Show("The XML patch is Required to`renable in-game login and launching the game.`r`n`r`nWould you like to run Kiwi Installer to install missing files?","The patch 'use-ingame-login.xml' is missing","YesNo","Error")
+		switch  ($msgBox5) {
+			'Yes' {
+				Invoke-Expression $($kiwiInstallerGitHub.Content)
+			}
+			'No' {
+				[System.Windows.Forms.MessageBox]::Show("The launch was canceled")
+				return
+			}
+		}
 	}
 	
 	# Start Client
