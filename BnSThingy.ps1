@@ -889,6 +889,30 @@ while (($readeachline = $PropertiesReader.ReadLine()) -ne $null) {
 		$script:userlang = $readeachline.Substring($startindex, $endindex);
 		#$OutputBox.AppendText("Login details loaded`r`n")
 	}
+	# Load saved Launch Option 1
+	elseif ($readeachline -match "launcha") {
+		$startindex = 8
+		$endindex = $readeachline.Length - $startindex
+		$script:unattended = $readeachline.Substring($startindex, $endindex);
+	}
+	# Load saved Launch Option 2
+	elseif ($readeachline -match "launchb") {
+		$startindex = 8
+		$endindex = $readeachline.Length - $startindex
+		$script:notexture = $readeachline.Substring($startindex, $endindex);
+	}
+	# Load saved Launch Option 3
+	elseif ($readeachline -match "launchc") {
+		$startindex = 8
+		$endindex = $readeachline.Length - $startindex
+		$script:allcores = $readeachline.Substring($startindex, $endindex);
+	}
+	# Load saved Client Selection
+	elseif ($readeachline -match "client") {
+		$startindex = 7
+		$endindex = $readeachline.Length - $startindex
+		$script:bitness = $readeachline.Substring($startindex, $endindex);
+	}
     $PropertiesLine++
 }
 $PropertiesReader.Dispose()
@@ -910,7 +934,34 @@ if ($LanguageSelection.SelectedIndex = -1) {
 	$LanguageSelection.SelectedIndex = 0
 }
 
-if (($BitnessSelection32.IsChecked -eq $False) -and ($BitnessSelection64.IsChecked -eq $False)) {
+if ($unattended -eq '1') {
+	$LaunchOpt1.IsChecked = $True
+}
+else {
+	$LaunchOpt1.IsChecked = $False
+}
+
+if ($notexture -eq '1') {
+	$LaunchOpt2.IsChecked = $True
+}
+else {
+	$LaunchOpt2.IsChecked = $False
+}
+
+if ($allcores -eq '1') {
+	$LaunchOpt3.IsChecked = $True
+}
+else {
+	$LaunchOpt3.IsChecked = $False
+}
+
+if ($bitness -eq '32') {
+	$BitnessSelection32.IsChecked = $True
+}
+elseif ($bitness -eq '64') {
+	$BitnessSelection64.IsChecked = $True
+}
+else {
 	$BitnessSelection32.IsChecked = $True
 }
 
@@ -1809,26 +1860,78 @@ function CloseApp {
 		$userregion = "EU"
 	}
 	
+	if ($LaunchOpt1.IsChecked -eq $True) {
+		$unattended = "1"
+	}
+	else {
+		$unattended = "0"
+	}
+	
+	if ($LaunchOpt2.IsChecked -eq $True) {
+		$notexture = "1"
+	}
+	else {
+		$notexture = "0"
+	}
+	
+	if ($LaunchOpt3.IsChecked -eq $True) {
+		$allcores = "1"
+	}
+	else {
+		$allcores = "0"
+	}
+	
+	if ($BitnessSelection32.IsChecked -eq $True) {
+		$bitness = "32"
+	}
+	else {
+		$bitness = "64"
+	}
+	
 	#Save Set Source Folder
 	$script:usersource = $SourceInput.Text
 	Set-Content -Path "$ScriptDir" -Value (get-content -Path "$ScriptDir" | Select-String -Pattern 'source:' -NotMatch)
-    #$OutputBox.AppendText("Source directory set to: " + $source + "`r`n")
-    $setsource = "source:" + $usersource
-    Add-Content -Path "$ScriptDir" -Value $setsource
+	#$OutputBox.AppendText("Source directory set to: " + $source + "`r`n")
+	$setsource = "source:" + $usersource
+	Add-Content -Path "$ScriptDir" -Value $setsource
+	
 	#Save Selected Profile
-    $script:profileindex = $ProfileSelector.SelectedIndex
-    Set-Content -Path "$ScriptDir" -Value (get-content -Path "$ScriptDir" | Select-String -Pattern 'profile:' -NotMatch)
+	$script:profileindex = $ProfileSelector.SelectedIndex
+	Set-Content -Path "$ScriptDir" -Value (get-content -Path "$ScriptDir" | Select-String -Pattern 'profile:' -NotMatch)
 	$setprofile = "profile:" + $profileindex
-    Add-Content -Path "$ScriptDir" -Value $setprofile
+	Add-Content -Path "$ScriptDir" -Value $setprofile
+	
 	#Save Region
-    Set-Content -Path "$ScriptDir" -Value (get-content -Path "$ScriptDir" | Select-String -Pattern 'region:' -NotMatch)
-    $setregion = "region:" + $userregion
-    Add-Content -Path "$ScriptDir" -Value $setregion
+	Set-Content -Path "$ScriptDir" -Value (get-content -Path "$ScriptDir" | Select-String -Pattern 'region:' -NotMatch)
+	$setregion = "region:" + $userregion
+	Add-Content -Path "$ScriptDir" -Value $setregion
+	
 	#Save Language
-    $script:userlang = $LanguageSelection.Text
-    Set-Content -Path "$ScriptDir" -Value (get-content -Path "$ScriptDir" | Select-String -Pattern 'lang:' -NotMatch)
-    $setlang = "lang:" + $userlang
-    Add-Content -Path "$ScriptDir" -Value $setlang
+	$script:userlang = $LanguageSelection.Text
+	Set-Content -Path "$ScriptDir" -Value (get-content -Path "$ScriptDir" | Select-String -Pattern 'lang:' -NotMatch)
+	$setlang = "lang:" + $userlang
+	Add-Content -Path "$ScriptDir" -Value $setlang
+	
+	#Save Launch Option 1
+	Set-Content -Path "$ScriptDir" -Value (get-content -Path "$ScriptDir" | Select-String -Pattern 'launcha:' -NotMatch)
+	$setlauncha = "launcha:" + $unattended
+	Add-Content -Path "$ScriptDir" -Value $setlauncha
+	
+	#Save Launch Option 2
+	Set-Content -Path "$ScriptDir" -Value (get-content -Path "$ScriptDir" | Select-String -Pattern 'launchb:' -NotMatch)
+	$setlaunchb = "launchb:" + $notexture
+	Add-Content -Path "$ScriptDir" -Value $setlaunchb
+	
+	#Save Launch Option 3
+	Set-Content -Path "$ScriptDir" -Value (get-content -Path "$ScriptDir" | Select-String -Pattern 'launchc:' -NotMatch)
+	$setlaunchc = "launchc:" + $allcores
+	Add-Content -Path "$ScriptDir" -Value $setlaunchc
+	
+	#Save Client Bit Selection
+	Set-Content -Path "$ScriptDir" -Value (get-content -Path "$ScriptDir" | Select-String -Pattern 'client:' -NotMatch)
+	$setbitness = "client:" + $bitness
+	Add-Content -Path "$ScriptDir" -Value $setbitness
+	
 	exit(1)
 }
 
