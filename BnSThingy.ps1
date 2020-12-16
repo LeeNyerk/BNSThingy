@@ -734,7 +734,7 @@ $Xaml = @"
             <CheckBox Name="CheckFX11" Content="SUM" Margin="85,71,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="75" Height="16"/>
             <CheckBox Name="CheckFX12" Content="SUM 3RD" Margin="85,87,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="75" Height="16" Visibility="Collapsed"/>
             <CheckBox Name="CheckFX13" Content="BD" Margin="85,111,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="69" Height="16"/>
-            <CheckBox Name="CheckFX14" Content="BD 3RD" Margin="85,127,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="69" Height="16" Visibility="Collapsed"/>
+            <CheckBox Name="CheckFX14" Content="BD 3RD" Margin="85,127,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="69" Height="16"/>
             <CheckBox Name="CheckFX15" Content="WL" Margin="85,151,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="69" Height="16"/>
             <CheckBox Name="CheckFX16" Content="WL 3RD" Margin="85,167,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="69" Height="16" Visibility="Collapsed"/>
             <CheckBox Name="CheckFX17" Content="SF" Margin="160,31,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="69" Height="16"/>
@@ -765,7 +765,7 @@ $Xaml = @"
             <CheckBox Name="CheckAN11" Content="SUM" Margin="85,71,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="69" Height="16"/>
             <CheckBox Name="CheckAN12" Content="SUM 3RD" Margin="85,87,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="16" Width="71" Visibility="Collapsed"/>
             <CheckBox Name="CheckAN13" Content="BD" Margin="85,111,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="69" Height="16"/>
-            <CheckBox Name="CheckAN14" Content="BD 3RD" Margin="85,127,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="69" Height="16" Visibility="Collapsed"/>
+            <CheckBox Name="CheckAN14" Content="BD 3RD" Margin="85,127,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="69" Height="16"/>
             <CheckBox Name="CheckAN15" Content="WL" Margin="85,151,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="69" Height="16"/>
             <CheckBox Name="CheckAN16" Content="WL 3RD" Margin="85,167,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="69" Height="16" Visibility="Collapsed"/>
             <CheckBox Name="CheckAN17" Content="SF" Margin="160,31,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="69" Height="16"/>
@@ -1294,6 +1294,8 @@ $sin3FXFiles = "00069254.upk"
 $sumFXFiles = "00006660.upk", "00010869.upk", "00060554.upk"
 # Blade Dancer Skill Effects
 $bdFXFiles = "00031769.upk", "00060555.upk"
+# Blade Dancer 3rd Skill Effects
+$bd3FXFiles = "00072644.upk", "00072646.upk"
 # Warlock Skill Effects
 $wlFXFiles = "00023411.upk", "00023412.upk", "00060556.upk"
 # Soul Fighter Skill Effects
@@ -1332,6 +1334,8 @@ $sin3ANFiles = "00068516.upk"
 $sumANFiles = "00007917.upk", "00056573.upk"
 # Blade Dancer Skill Animations
 $bdANFiles = "00018601.upk", "00056574.upk"
+# Blade Dancer 3rd Skill Animations
+$bd3ANFiles = "00078303.upk", "00078533.upk"
 # Warlock Skill Animations
 $wlANFiles = "00023439.upk", "00056575.upk"
 # Soul Fighter Skill Animations
@@ -1381,7 +1385,7 @@ If (!(test-path $destination)) {
 $elementchk = ""
 $inBackup = @()
 $inMissing = @()
-$inGame = $mixFXFiles + $bmFXFiles + $bm3FXFiles + $kfmFXFiles + $kfm3FXFiles + $fmFXFiles + $fm3FXFiles + $desFXFiles + $des3FXFiles + $sinFXFiles + $sin3FXFiles + $sumFXFiles + $bdFXFiles + $wlFXFiles + $sfFXFiles + $gsFXFiles + $wdFXFiles + $arFXFiles + $as1FXFiles + $as2FXFiles + $bmANFiles + $bm3ANFiles + $kfmANFiles + $kfm3ANFiles + $fmANFiles + $fm3ANFiles + $desANFiles + $des3ANFiles + $sinANFiles + $sin3ANFiles + $sumANFiles + $bdANFiles + $wlANFiles + $sfANFiles + $gsANFiles + $wdANFiles + $arANFiles + $as1ANFiles + $as2ANFiles + $soulburnFXFiles + $unitytalisFXFiles + $soulFXFiles + $heartFXFiles + $uiFXFiles + $mspfogFXFiles + $dmgNRFiles + $loadSCRNFiles
+$inGame = $mixFXFiles + $bmFXFiles + $bm3FXFiles + $kfmFXFiles + $kfm3FXFiles + $fmFXFiles + $fm3FXFiles + $desFXFiles + $des3FXFiles + $sinFXFiles + $sin3FXFiles + $sumFXFiles + $bdFXFiles + $bd3FXFiles + $wlFXFiles + $sfFXFiles + $gsFXFiles + $wdFXFiles + $arFXFiles + $as1FXFiles + $as2FXFiles + $bmANFiles + $bm3ANFiles + $kfmANFiles + $kfm3ANFiles + $fmANFiles + $fm3ANFiles + $desANFiles + $des3ANFiles + $sinANFiles + $sin3ANFiles + $sumANFiles + $bdANFiles + $bd3ANFiles + $wlANFiles + $sfANFiles + $gsANFiles + $wdANFiles + $arANFiles + $as1ANFiles + $as2ANFiles + $soulburnFXFiles + $unitytalisFXFiles + $soulFXFiles + $heartFXFiles + $uiFXFiles + $mspfogFXFiles + $dmgNRFiles + $loadSCRNFiles
 foreach ($elementchk in $inGame) {
     if (test-path -Path $copysrc\$elementchk) {
 		#$OutputBox.AppendText("")
@@ -1468,6 +1472,11 @@ foreach ($elementchk in $bdFXFiles) {
 	if ($inBackup -contains $elementchk) { $CheckFX13.IsChecked = $false }
 	elseif ($isMissing -contains $elementchk) { $CheckFX13.IsChecked = $false }
 	else { $CheckFX13.IsChecked = $true }
+}
+foreach ($elementchk in $bd3FXFiles) {
+	if ($inBackup -contains $elementchk) { $CheckFX14.IsChecked = $false }
+	elseif ($isMissing -contains $elementchk) { $CheckFX14.IsChecked = $false }
+	else { $CheckFX14.IsChecked = $true }
 }
 foreach ($elementchk in $wlFXFiles) {
 	if ($inBackup -contains $elementchk) { $CheckFX15.IsChecked = $false }
@@ -1564,6 +1573,11 @@ foreach ($elementchk in $bdANFiles) {
 	elseif ($isMissing -contains $elementchk) { $CheckAN13.IsChecked = $false }
 	else { $CheckAN13.IsChecked = $true }
 }
+foreach ($elementchk in $bd3ANFiles) {
+	if ($inBackup -contains $elementchk) { $CheckAN14.IsChecked = $false }
+	elseif ($isMissing -contains $elementchk) { $CheckAN14.IsChecked = $false }
+	else { $CheckAN14.IsChecked = $true }
+}
 foreach ($elementchk in $wlANFiles) {
 	if ($inBackup -contains $elementchk) { $CheckAN15.IsChecked = $false }
 	elseif ($isMissing -contains $elementchk) { $CheckAN15.IsChecked = $false }
@@ -1641,8 +1655,8 @@ foreach ($elementchk in $soulburnFXFiles) {
 }
 
 #--- Set "Select All" based on current checked status ---#
-$FXSelected = @($CheckFX1.IsChecked, $CheckFX2.IsChecked, $CheckFX3.IsChecked, $CheckFX4.IsChecked, $CheckFX5.IsChecked, $CheckFX6.IsChecked, $CheckFX7.IsChecked, $CheckFX8.IsChecked, $CheckFX9.IsChecked, $CheckFX10.IsChecked, $CheckFX11.IsChecked, $CheckFX13.IsChecked, $CheckFX15.IsChecked, $CheckFX17.IsChecked, $CheckFX19.IsChecked, $CheckFX21.IsChecked, $CheckFX23.IsChecked, $CheckFX25.IsChecked, $CheckFX26.IsChecked, $CheckFXM.IsChecked)
-$ANSelected = @($CheckAN1.IsChecked, $CheckAN2.IsChecked, $CheckAN3.IsChecked, $CheckAN4.IsChecked, $CheckAN5.IsChecked, $CheckAN6.IsChecked, $CheckAN7.IsChecked, $CheckAN8.IsChecked, $CheckAN9.IsChecked, $CheckAN10.IsChecked, $CheckAN11.IsChecked, $CheckAN13.IsChecked, $CheckAN15.IsChecked, $CheckAN17.IsChecked, $CheckAN19.IsChecked, $CheckAN21.IsChecked, $CheckAN23.IsChecked, $CheckAN25.IsChecked, $CheckAN26.IsChecked)
+$FXSelected = @($CheckFX1.IsChecked, $CheckFX2.IsChecked, $CheckFX3.IsChecked, $CheckFX4.IsChecked, $CheckFX5.IsChecked, $CheckFX6.IsChecked, $CheckFX7.IsChecked, $CheckFX8.IsChecked, $CheckFX9.IsChecked, $CheckFX10.IsChecked, $CheckFX11.IsChecked, $CheckFX13.IsChecked, $CheckFX14.IsChecked, $CheckFX15.IsChecked, $CheckFX17.IsChecked, $CheckFX19.IsChecked, $CheckFX21.IsChecked, $CheckFX23.IsChecked, $CheckFX25.IsChecked, $CheckFX26.IsChecked, $CheckFXM.IsChecked)
+$ANSelected = @($CheckAN1.IsChecked, $CheckAN2.IsChecked, $CheckAN3.IsChecked, $CheckAN4.IsChecked, $CheckAN5.IsChecked, $CheckAN6.IsChecked, $CheckAN7.IsChecked, $CheckAN8.IsChecked, $CheckAN9.IsChecked, $CheckAN10.IsChecked, $CheckAN11.IsChecked, $CheckAN13.IsChecked, $CheckAN14.IsChecked, $CheckAN15.IsChecked, $CheckAN17.IsChecked, $CheckAN19.IsChecked, $CheckAN21.IsChecked, $CheckAN23.IsChecked, $CheckAN25.IsChecked, $CheckAN26.IsChecked)
 
 if($FXSelected -notcontains ($false)) {
 	$CheckFXA.IsChecked = $true
@@ -1662,7 +1676,7 @@ else {
 function SelectAllFX {
 	#$OutputBox.AppendText("Moving Files...`r`n")
 	$elementchk = ""
-	$GroupFX = $CheckFX1, $CheckFX2, $CheckFX3, $CheckFX4, $CheckFX5, $CheckFX6, $CheckFX7, $CheckFX8, $CheckFX9, $CheckFX10, $CheckFX11, $CheckFX13, $CheckFX15, $CheckFX17, $CheckFX19, $CheckFX21, $CheckFX23, $CheckFX25, $CheckFX26, $CheckFXM
+	$GroupFX = $CheckFX1, $CheckFX2, $CheckFX3, $CheckFX4, $CheckFX5, $CheckFX6, $CheckFX7, $CheckFX8, $CheckFX9, $CheckFX10, $CheckFX11, $CheckFX13, $CheckFX14, $CheckFX15, $CheckFX17, $CheckFX19, $CheckFX21, $CheckFX23, $CheckFX25, $CheckFX26, $CheckFXM
     if ($CheckFXA.IsChecked -eq $true) {
         Foreach ($elementchk in $GroupFX) {
 			$elementchk.IsChecked = $true
@@ -1680,7 +1694,7 @@ function SelectAllFX {
 function SelectAllAN {
 	#$OutputBox.AppendText("Moving Files...`r`n")
 	$elementchk = ""
-	$GroupAN = $CheckAN1, $CheckAN2, $CheckAN3, $CheckAN4, $CheckAN5, $CheckAN6, $CheckAN7, $CheckAN8, $CheckAN9, $CheckAN10, $CheckAN11, $CheckAN13, $CheckAN15, $CheckAN17, $CheckAN19, $CheckAN21, $CheckAN23, $CheckAN25, $CheckAN26
+	$GroupAN = $CheckAN1, $CheckAN2, $CheckAN3, $CheckAN4, $CheckAN5, $CheckAN6, $CheckAN7, $CheckAN8, $CheckAN9, $CheckAN10, $CheckAN11, $CheckAN13, $CheckAN14, $CheckAN15, $CheckAN17, $CheckAN19, $CheckAN21, $CheckAN23, $CheckAN25, $CheckAN26
     if ($CheckANA.IsChecked -eq $true) {
         Foreach ($elementchk in $GroupAN) {
 			$elementchk.IsChecked = $true
@@ -1712,14 +1726,15 @@ function Filemover {
     elseif ($this -eq $CheckFX10) { $item = $sin3FXFiles }
     elseif ($this -eq $CheckFX11) { $item = $sumFXFiles }
     elseif ($this -eq $CheckFX13) { $item = $bdFXFiles }
+    elseif ($this -eq $CheckFX14) { $item = $bd3FXFiles }
     elseif ($this -eq $CheckFX15) { $item = $wlFXFiles }
     elseif ($this -eq $CheckFX17) { $item = $sfFXFiles }
     elseif ($this -eq $CheckFX19) { $item = $gsFXFiles }
     elseif ($this -eq $CheckFX21) { $item = $wdFXFiles }
     elseif ($this -eq $CheckFX23) { $item = $arFXFiles }
-	elseif ($this -eq $CheckFX25) { $item = $as1FXFiles }
-	elseif ($this -eq $CheckFX26) { $item = $as2FXFiles }
-	elseif ($this -eq $CheckAN1) { $item = $bmANFiles }
+    elseif ($this -eq $CheckFX25) { $item = $as1FXFiles }
+    elseif ($this -eq $CheckFX26) { $item = $as2FXFiles }
+    elseif ($this -eq $CheckAN1) { $item = $bmANFiles }
     elseif ($this -eq $CheckAN2) { $item = $bm3ANFiles }
     elseif ($this -eq $CheckAN3) { $item = $kfmANFiles }
     elseif ($this -eq $CheckAN4) { $item = $kfm3ANFiles }
@@ -1731,19 +1746,20 @@ function Filemover {
     elseif ($this -eq $CheckAN10) { $item = $sin3ANFiles }
     elseif ($this -eq $CheckAN11) { $item = $sumANFiles }
     elseif ($this -eq $CheckAN13) { $item = $bdANFiles }
+    elseif ($this -eq $CheckAN14) { $item = $bd3ANFiles }
     elseif ($this -eq $CheckAN15) { $item = $wlANFiles }
     elseif ($this -eq $CheckAN17) { $item = $sfANFiles }
     elseif ($this -eq $CheckAN19) { $item = $gsANFiles }
     elseif ($this -eq $CheckAN21) { $item = $wdANFiles }
     elseif ($this -eq $CheckAN23) { $item = $arANFiles }
-	elseif ($this -eq $CheckAN25) { $item = $as1ANFiles }
-	elseif ($this -eq $CheckAN26) { $item = $as2ANFiles }
+    elseif ($this -eq $CheckAN25) { $item = $as1ANFiles }
+    elseif ($this -eq $CheckAN26) { $item = $as2ANFiles }
     elseif ($this -eq $CheckEX3) { $item = $soulFXFiles }
-	elseif ($this -eq $CheckEX4) { $item = $heartFXFiles }
+    elseif ($this -eq $CheckEX4) { $item = $heartFXFiles }
     elseif ($this -eq $CheckEX5) { $item = $unitytalisFXFiles }
     elseif ($this -eq $CheckEX6) { $item = $uiFXFiles }
     elseif ($this -eq $CheckEX7) { $item = $mspfogFXFiles }
-	elseif ($this -eq $CheckEX8) { $item = $soulburnFXFiles }
+    elseif ($this -eq $CheckEX8) { $item = $soulburnFXFiles }
 	
 	# When selection is checked, backup
     if ($this.IsChecked -eq $false) {
@@ -2012,6 +2028,8 @@ $CheckFX11.Add_Checked({Filemover $this $_})
 $CheckFX11.Add_Unchecked({Filemover $this $_})
 $CheckFX13.Add_Checked({Filemover $this $_})
 $CheckFX13.Add_Unchecked({Filemover $this $_})
+$CheckFX14.Add_Checked({Filemover $this $_})
+$CheckFX14.Add_Unchecked({Filemover $this $_})
 $CheckFX15.Add_Checked({Filemover $this $_})
 $CheckFX15.Add_Unchecked({Filemover $this $_})
 $CheckFX17.Add_Checked({Filemover $this $_})
@@ -2052,6 +2070,8 @@ $CheckAN11.Add_Checked({Filemover $this $_})
 $CheckAN11.Add_Unchecked({Filemover $this $_})
 $CheckAN13.Add_Checked({Filemover $this $_})
 $CheckAN13.Add_Unchecked({Filemover $this $_})
+$CheckAN14.Add_Checked({Filemover $this $_})
+$CheckAN14.Add_Unchecked({Filemover $this $_})
 $CheckAN15.Add_Checked({Filemover $this $_})
 $CheckAN15.Add_Unchecked({Filemover $this $_})
 $CheckAN17.Add_Checked({Filemover $this $_})
