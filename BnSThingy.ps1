@@ -1338,7 +1338,7 @@ $sin3ANFiles = "00068516.upk"
 # Summoner Skill Animations
 $sumANFiles = "00007917.upk", "00056573.upk"
 # Summoner 3rd Skill Animations
-$sum3ANFiles = "00080266.upk"
+$sum3ANFiles = "00078884.upk", "00080266.upk"
 # Blade Dancer Skill Animations
 $bdANFiles = "00018601.upk", "00056574.upk"
 # Blade Dancer 3rd Skill Animations
