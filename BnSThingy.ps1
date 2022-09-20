@@ -986,7 +986,7 @@ function OpenAddons {
 }
 
 #--- Open UPK mods folder ---#
-$modfolder = $SourceInput.Text + "contents\Local\NCWEST\" + $LanguageSelection.Text + "\CookedPC\mod"
+$modfolder = $SourceInput.Text + "contents\bns\CookedPC\mod"
 function OpenMods {
 	If (!(test-path $modfolder)) {
     New-Item -Path $modfolder -ItemType directory | out-null
@@ -1122,7 +1122,7 @@ function StartProcess {
 	
 	# Set Client Bitness
 	if ($BitnessSelection32.IsChecked -eq $True) {
-		$Client = $source + "bin\Client.exe"
+		$Client = $source + "bin64\Client.exe"
 	}
 	else {
 		$Client = $source + "bin64\Client.exe"
@@ -1130,10 +1130,10 @@ function StartProcess {
 	
 	# Set region parameter
 	if ($RegionSelection1.IsChecked -eq $True) {
-		$loginregion = "-region:1"
+		$loginregion = "-region:european_union"
 	}
 	else {
-		$loginregion = "-region:0"
+		$loginregion = "-region:north_america"
 	}
 	
 	# Set Unattended parameter
@@ -1161,7 +1161,7 @@ function StartProcess {
 	}
 	
 	# Set parameters
-	$plugins32folder = $SourceInput.Text + "bin\plugins"
+	$plugins32folder = $SourceInput.Text + "bin64\plugins"
 	$plugins64folder = $SourceInput.Text + "bin64\plugins"
 	$loginlang = "-lang:" + $LanguageSelection.Text
 	$loginuser = "-USERNAME:" + $UsernameInput.Text
@@ -1170,20 +1170,20 @@ function StartProcess {
 	
     # Set launch parameters based on if a pin is set or not 
 	if ($userpin -eq "") {
-		$Params = @('/sesskey','/launchbylauncher', $loginlang, $loginregion, $Lopt1, $Lopt2, $Lopt3, $loginuser, $loginpass)
+		$Params = @('/sesskey','/launchbylauncher','/LoginMode 2', $Lopt1, $Lopt2, $Lopt3, $loginuser, $loginpass)
 	}
 	else {
-		$Params = @('/sesskey','/launchbylauncher', $loginlang, $loginregion, $Lopt1, $Lopt2, $Lopt3, $loginuser, $loginpass, $loginpin)
+		$Params = @('/sesskey','/launchbylauncher','/LoginMode 2', $Lopt1, $Lopt2, $Lopt3, $loginuser, $loginpass, $loginpin)
 	}
 	
-	$kiwiInstallerGitHub = Invoke-WebRequest "https://raw.githubusercontent.com/kvy1/kiwi_installer/main/installer.ps1" -UseBasicParsing
+	# $kiwiInstallerGitHub = Invoke-WebRequest "https://raw.githubusercontent.com/kvy1/kiwi_installer/main/installer.ps1" -UseBasicParsing
 
 	# Check for BNS Patch
 	if (!(test-path "$plugins32folder\bnspatch.dll" -PathType Leaf)) {
-		$msgBox1 = [System.Windows.Forms.MessageBox]::Show("BNSPatch is Required to enable`rin-game login and launching the game.`r`n`r`nWould you like to run Kiwi Installer to install missing files?","32 bit 'bnspatch.dll' is missing","YesNo","Error")
+		$msgBox1 = [System.Windows.Forms.MessageBox]::Show("BNSPatch is Required to enable`rin-game login and launching the game.`r`n`r`nWould you like to download missing files?","'bnspatch.dll' is missing","YesNo","Error")
 		switch  ($msgBox1) {
 			'Yes' {
-				Invoke-Expression $($kiwiInstallerGitHub.Content)
+				Invoke-WebRequest -Uri https://raw.githubusercontent.com/LeeNyerk/BNSThingy/main/bnspatch.dll -OutFile "$plugins32folder\bnspatch.dll"
 			}
 			'No' {
 				[System.Windows.Forms.MessageBox]::Show("The launch was canceled")
@@ -1193,10 +1193,10 @@ function StartProcess {
 	}
 	# Check for 64 BNS Patch
 	if (!(test-path "$plugins64folder\bnspatch.dll" -PathType Leaf)) {
-		$msgBox2 = [System.Windows.Forms.MessageBox]::Show("BNSPatch is Required to enable`rin-game login and launching the game.`r`n`r`nWould you like to run Kiwi Installer to install missing files?","64 bit 'bnspatch.dll' is missing","YesNo","Error")
+		$msgBox2 = [System.Windows.Forms.MessageBox]::Show("BNSPatch is Required to enable`rin-game login and launching the game.`r`n`r`nWould you like to download missing files?","'bnspatch.dll' is missing","YesNo","Error")
 		switch  ($msgBox2) {
 			'Yes' {
-				Invoke-Expression $($kiwiInstallerGitHub.Content)
+				Invoke-WebRequest -Uri https://raw.githubusercontent.com/LeeNyerk/BNSThingy/main/bnspatch.dll -OutFile "$plugins64folder\bnspatch.dll"
 			}
 			'No' {
 				[System.Windows.Forms.MessageBox]::Show("The launch was canceled")
@@ -1206,10 +1206,10 @@ function StartProcess {
 	}
 	# Check for Loginhelper
 	if (!(test-path "$plugins32folder\loginhelper.dll" -PathType Leaf)) {
-		$msgBox3 = [System.Windows.Forms.MessageBox]::Show("Login helper is needed for auto-login using profiles,`rbut not required to launch the game.`r`n`r`nWould you like to run Kiwi Installer to install missing files?","32 bit 'loginhelper.dll' is missing","YesNo")
+		$msgBox3 = [System.Windows.Forms.MessageBox]::Show("Login helper is needed for auto-login using profiles,`rbut not required to launch the game.`r`n`r`nWould you like to download missing files?","'loginhelper.dll' is missing","YesNo")
 		switch  ($msgBox3) {
 			'Yes' {
-				Invoke-Expression $($kiwiInstallerGitHub.Content)
+				Invoke-WebRequest -Uri https://raw.githubusercontent.com/LeeNyerk/BNSThingy/main/loginhelper.dll -OutFile "$plugins32folder\loginhelper.dll"
 			}
 			'No' {
 				continue
@@ -1218,10 +1218,10 @@ function StartProcess {
 	}
 	# Check for 64 Loginhelper
 	if (!(test-path "$plugins64folder\loginhelper.dll" -PathType Leaf)) {
-		$msgBox4 = [System.Windows.Forms.MessageBox]::Show("Login helper is needed for auto-login using profiles,`rbut not required to launch the game.`r`n`r`nWould you like to run Kiwi Installer to install missing files?","64 bit 'loginhelper.dll' is missing","YesNo")
+		$msgBox4 = [System.Windows.Forms.MessageBox]::Show("Login helper is needed for auto-login using profiles,`rbut not required to launch the game.`r`n`r`nWould you like to download missing files?","'loginhelper.dll' is missing","YesNo")
 		switch  ($msgBox4) {
 			'Yes' {
-				Invoke-Expression $($kiwiInstallerGitHub.Content)
+				Invoke-WebRequest -Uri https://raw.githubusercontent.com/LeeNyerk/BNSThingy/main/loginhelper.dll -OutFile "$plugins64folder\loginhelper.dll"
 			}
 			'No' {
 				continue
@@ -1229,18 +1229,18 @@ function StartProcess {
 		}
 	}
 	# Check for In-game Login XML
-	if (!(test-path "$xmlpatchfolder\use-ingame-login.xml" -PathType Leaf)) {
-		$msgBox5 = [System.Windows.Forms.MessageBox]::Show("The XML patch is Required to`renable in-game login and launching the game.`r`n`r`nWould you like to run Kiwi Installer to install missing files?","The patch 'use-ingame-login.xml' is missing","YesNo","Error")
-		switch  ($msgBox5) {
-			'Yes' {
-				Invoke-Expression $($kiwiInstallerGitHub.Content)
-			}
-			'No' {
-				[System.Windows.Forms.MessageBox]::Show("The launch was canceled")
-				return
-			}
-		}
-	}
+	#if (!(test-path "$xmlpatchfolder\use-ingame-login.xml" -PathType Leaf)) {
+	#	$msgBox5 = [System.Windows.Forms.MessageBox]::Show("The XML patch is Required to`renable in-game login and launching the game.`r`n`r`nWould you like to run Kiwi Installer to install missing files?","The patch 'use-ingame-login.xml' is missing","YesNo","Error")
+	#	switch  ($msgBox5) {
+	#		'Yes' {
+	#			Invoke-Expression $($kiwiInstallerGitHub.Content)
+	#		}
+	#		'No' {
+	#			[System.Windows.Forms.MessageBox]::Show("The launch was canceled")
+	#			return
+	#		}
+	#	}
+	#}
 	
 	# Start Client
 	#$OutputBox.AppendText("Starting Client...`r`n")
@@ -1383,9 +1383,9 @@ $load2SCRNFiles = "Loading.pkg"
 
 #--- Set General Paths ---#
 $copysrc = $SourceInput.Text + "\contents\bns\CookedPC"
-$copysrcB = $SourceInput.Text + "\contents\Local\NCWEST\" + $LanguageSelection.Text + "\CookedPC"
+$copysrcB = $SourceInput.Text + "\contents\bns\CookedPC"
 $destination = $SourceInput.Text + "\contents\bns\CookedPC_Backup"
-$destinationB = $SourceInput.Text + "\contents\Local\NCWEST\" + $LanguageSelection.Text + "\CookedPC_Backup"
+$destinationB = $SourceInput.Text + "\contents\bns\CookedPC_Backup"
 
 #--- Look for Backup folder, create if it doesn't exist ---#
 If (!(test-path $destination)) {
@@ -1991,14 +1991,14 @@ function CloseApp {
 function getPing {
 	
 	if ($RegionSelection0.IsChecked -eq $True) {
-		#$server = 'ec2.us-east-1.amazonaws.com'
-		#$server = 'dynamodb.us-east-1.amazonaws.com'
-		$server = '54.239.28.168'
+		#$server = 'ec2.us-east-2.amazonaws.com'
+		$server = 'dynamodb.us-east-2.amazonaws.com'
+		#$server = '54.239.28.168'
 	}
 	else {
 		#$server = 'ec2.eu-central-1.amazonaws.com'
-		#$server = 'dynamodb.eu-central-1.amazonaws.com'
-		$server = '54.239.55.167'
+		$server = 'dynamodb.eu-central-1.amazonaws.com'
+		#$server = '54.239.55.167'
 	}
 
 	$ping = Test-Connection -ComputerName $server -count 1 | Select-Object ResponseTime
