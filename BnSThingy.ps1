@@ -1182,18 +1182,18 @@ function StartProcess {
 	# $kiwiInstallerGitHub = Invoke-WebRequest "https://raw.githubusercontent.com/kvy1/kiwi_installer/main/installer.ps1" -UseBasicParsing
 
 	# Check for BNS Patch
-	if (!(test-path "$plugins32folder\bnspatch.dll" -PathType Leaf)) {
-		$msgBox1 = [System.Windows.Forms.MessageBox]::Show("BNSPatch is Required to enable`rin-game login and launching the game.`r`n`r`nWould you like to download missing files?","'bnspatch.dll' is missing","YesNo","Error")
-		switch  ($msgBox1) {
-			'Yes' {
-				Invoke-WebRequest -Uri https://raw.githubusercontent.com/LeeNyerk/BNSThingy/main/bnspatch.dll -OutFile "$plugins32folder\bnspatch.dll"
-			}
-			'No' {
-				[System.Windows.Forms.MessageBox]::Show("The launch was canceled")
-				return
-			}
-		}
-	}
+	#if (!(test-path "$plugins32folder\bnspatch.dll" -PathType Leaf)) {
+	#	$msgBox1 = [System.Windows.Forms.MessageBox]::Show("BNSPatch is Required to enable`rin-game login and launching the game.`r`n`r`nWould you like to download missing files?","'bnspatch.dll' is missing","YesNo","Error")
+	#	switch  ($msgBox1) {
+	#		'Yes' {
+	#			Invoke-WebRequest -Uri https://raw.githubusercontent.com/LeeNyerk/BNSThingy/main/bnspatch.dll -OutFile "$plugins32folder\bnspatch.dll"
+	#		}
+	#		'No' {
+	#			[System.Windows.Forms.MessageBox]::Show("The launch was canceled")
+	#			return
+	#		}
+	#	}
+	#}
 	# Check for 64 BNS Patch
 	if (!(test-path "$plugins64folder\bnspatch.dll" -PathType Leaf)) {
 		$msgBox2 = [System.Windows.Forms.MessageBox]::Show("BNSPatch is Required to enable`rin-game login and launching the game.`r`n`r`nWould you like to download missing files?","'bnspatch.dll' is missing","YesNo","Error")
@@ -1208,17 +1208,17 @@ function StartProcess {
 		}
 	}
 	# Check for Loginhelper
-	if (!(test-path "$plugins32folder\loginhelper.dll" -PathType Leaf)) {
-		$msgBox3 = [System.Windows.Forms.MessageBox]::Show("Login helper is needed for auto-login using profiles,`rbut not required to launch the game.`r`n`r`nWould you like to download missing files?","'loginhelper.dll' is missing","YesNo")
-		switch  ($msgBox3) {
-			'Yes' {
-				Invoke-WebRequest -Uri https://raw.githubusercontent.com/LeeNyerk/BNSThingy/main/loginhelper.dll -OutFile "$plugins32folder\loginhelper.dll"
-			}
-			'No' {
-				continue
-			}
-		}
-	}
+	#if (!(test-path "$plugins32folder\loginhelper.dll" -PathType Leaf)) {
+	#	$msgBox3 = [System.Windows.Forms.MessageBox]::Show("Login helper is needed for auto-login using profiles,`rbut not required to launch the game.`r`n`r`nWould you like to download missing files?","'loginhelper.dll' is missing","YesNo")
+	#	switch  ($msgBox3) {
+	#		'Yes' {
+	#			Invoke-WebRequest -Uri https://raw.githubusercontent.com/LeeNyerk/BNSThingy/main/loginhelper.dll -OutFile "$plugins32folder\loginhelper.dll"
+	#		}
+	#		'No' {
+	#			continue
+	#		}
+	#	}
+	#}
 	# Check for 64 Loginhelper
 	if (!(test-path "$plugins64folder\loginhelper.dll" -PathType Leaf)) {
 		$msgBox4 = [System.Windows.Forms.MessageBox]::Show("Login helper is needed for auto-login using profiles,`rbut not required to launch the game.`r`n`r`nWould you like to download missing files?","'loginhelper.dll' is missing","YesNo")
